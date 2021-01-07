@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar slot="start">
+    <ion-back-button default="/"></ion-back-button>
+    <ion-title>{{student.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="myForm">
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <header text-center>
+            <h3>Modificar Alumno</h3>
+          </header>
+          <main padding>
+            <ion-item>
+              <ion-label position="stacked">Nombre</ion-label>
+              <ion-input formControlName="name" type="text" placeholder="{{student.name}}"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Curp</ion-label>
+              <ion-input formControlName="curp" type="text" placeholder="{{student.curp}}">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Numero de control</ion-label>
+              <ion-input formControlName="controlnumber" type="text" placeholder="{{student.controlnumber}}">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label for="age" position="stacked">Edad</ion-label>
+              <ion-input id="age" name="age" formControlName="age" type="number" placeholder="{{student.age}}">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Activo</ion-label>
+              <ion-toggle formControlName="active" color="secondary">{{student.active}}
+              </ion-toggle>
+            </ion-item>
+          </main>
+          <footer padding>
+            <ion-button size="large" type="button" [disabled]="!myForm.valid" (click)="create()" expand="block">Guardar
+            </ion-button>
+          </footer>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

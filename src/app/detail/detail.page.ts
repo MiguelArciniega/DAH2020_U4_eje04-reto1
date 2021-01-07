@@ -1,19 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Estudiante } from '../models/estudiante';
-import { EstudianteService } from '../services/estudiante.service';
+import { Estudiante } from "../models/estudiante";
+import { EstudianteService } from "../services/estudiante.service";
+import { ToastController } from "@ionic/angular";
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-detail',
+  templateUrl: './detail.page.html',
+  styleUrls: ['./detail.page.scss'],
 })
-export class Tab1Page implements OnInit {
+export class DetailPage implements OnInit {
 
   public myForm: FormGroup;
-  public student: Estudiante;
+  student: Estudiante;
 
-  constructor(private studentService: EstudianteService, private fb: FormBuilder) { }
+  constructor(private service: EstudianteService,
+    private actroute: ActivatedRoute,
+    private router: Router,
+    private toast: ToastController, private fb: FormBuilder) {
+    this.actroute.queryParams.subscribe(
+      params => {
+        if (params && params.special) {
+          this.student = JSON.parse(params.special) as Estudiante;
+          console.log(this.student);
+        }
+      }
+    );
+  }
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -34,9 +48,9 @@ export class Tab1Page implements OnInit {
       curp: this.myForm.controls.curp.value,
       active: this.myForm.controls.active.value
     };
-    this.studentService.createStudent(this.student);
+    this.service.createStudent(this.student);
     this.cleanInputs();
-    alert('Alumno agregado con exito');
+    alert('Alumno modificado con exito');
   }
 
   private cleanInputs(): void {

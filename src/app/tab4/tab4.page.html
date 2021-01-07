@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="success">
-    <ion-title> Estudiantes Activos</ion-title>
+    <ion-title> Estudiantes Inactivos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,10 +12,10 @@
           <ion-icon name="checkmark"></ion-icon>
         </ion-item-option>
       </ion-item-options>
-      <ion-item *ngIf="student.active">
+      <ion-item *ngIf="!student.active">
         <ion-label>
-          <ion-chip color="secondary" class="ion-float-right">
-            <ion-label>Activo</ion-label>
+          <ion-chip color="danger" class="ion-float-right">
+            <ion-label>Inactivo</ion-label>
           </ion-chip>
           <h2><strong>{{student.name}}</strong></h2>
           <h3>{{student.controlnumber}}</h3>

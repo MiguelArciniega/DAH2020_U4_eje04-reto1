@@ -32,7 +32,8 @@ export class Tab1Page implements OnInit {
       controlnumber: this.myForm.controls.controlnumber.value,
       age: this.myForm.controls.age.value,
       curp: this.myForm.controls.curp.value,
-      active: this.myForm.controls.active.value
+      active: this.myForm.controls.active.value,
+      id: this.myForm.controls.id.value
     };
     this.studentService.createStudent(this.student);
     this.cleanInputs();

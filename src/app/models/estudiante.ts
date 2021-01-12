@@ -4,4 +4,5 @@ export class Estudiante {
     curp: string;
     age: number;
     active: boolean;
+    id: string;
 }
